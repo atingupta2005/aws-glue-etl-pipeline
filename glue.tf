@@ -25,7 +25,8 @@ resource "aws_glue_crawler" "aws_glue_custom_csv_crawler" {
   }
   
   provisioner "local-exec" {
-    command = "aws s3 cp ./custom_data.csv s3://atin-aws-glue-etl-process/sales/custom_data.csv;aws glue start-crawler --name ${self.name}"
+    #command = "aws s3 cp ./custom_data.csv s3://atin-aws-glue-etl-process/sales/custom_data.csv;aws glue start-crawler --name ${self.name}"
+  command = "aws s3 cp ./custom_data.csv s3://${var.bucket_for_glue}/sales/custom_data.csv;aws glue start-crawler --name ${self.name}"
   }
   
 }
