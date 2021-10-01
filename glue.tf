@@ -41,6 +41,7 @@ resource "aws_glue_job" "aws_glue_job_nginx_logs_processing" {
   }
 
   default_arguments = {
-	"--job-language" = "python"
+	"--job-language" = "python",
+	"--TempDir": "s3://${var.bucket_for_glue}/tmp"
   }
 }
