@@ -31,3 +31,15 @@ resource "aws_glue_crawler" "aws_glue_custom_csv_crawler" {
   
 }
 
+resource "aws_glue_job" "aws_glue_job_nginx_logs_processing" {
+  name = "aws-glue-job-nginx-logs-processing"
+  role_arn = aws_iam_role.aws_iam_glue_role.arn
+
+  command {
+    script_location = "s3://${aws_s3_bucket.bucket_for_glue.bucket}/scripts/process_nginx_logs.py"
+  }
+
+  default_arguments = {
+	"--job-language" = "scala"
+  }
+}
