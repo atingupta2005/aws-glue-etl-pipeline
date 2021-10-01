@@ -23,5 +23,10 @@ resource "aws_glue_crawler" "aws_glue_custom_csv_crawler" {
   s3_target {
     path = "s3://${aws_s3_bucket.bucket_for_glue.bucket}/sales/"
   }
+  
+  provisioner "local-exec" {
+    command = "aws glue start-crawler --name ${self.name}"
+  }
+  
 }
 
