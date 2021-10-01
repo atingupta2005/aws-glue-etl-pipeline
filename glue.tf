@@ -31,5 +31,3 @@ resource "aws_glue_crawler" "aws_glue_custom_csv_crawler" {
   }
   
 }
-
-}
